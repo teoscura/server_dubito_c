@@ -1,0 +1,8 @@
+Create packet structure and interfaces
+define protocol
+establish matchmaking
+custom games system
+various modes and variants
+packet logic validation
+account creation and password hashing and storage using SQLite3
+interfacing through UDP with android app.
