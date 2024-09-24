@@ -10,7 +10,6 @@ class Packet : public IPacket
     public:
         Packet(std::vector<u8> data);
         std::vector<u8>& unpack() override;
-        ~Packet();
 };
 
 #endif
