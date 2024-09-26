@@ -1,6 +1,5 @@
-#include "socket.hpp"
+#include "tcpsocket.hpp"
 #include <cstdlib>
-#include <cstring>
 #include <strings.h>
 #include <sys/socket.h>
 #include <unistd.h>

@@ -10,9 +10,8 @@ using namespace dint;
 class INetworkServer
 {
     public:
-        virtual void start(u32 port);
-        virtual void send(std::vector<u8> data, u32 recipient);
         virtual std::vector<IPacket> incoming_packets();
+        virtual void send(std::vector<u8> data, u32 recipient);
         virtual ~INetworkServer();   
 };
 

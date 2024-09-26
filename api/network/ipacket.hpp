@@ -11,6 +11,7 @@ class IPacket
 {
     public:
         virtual std::vector<u8>& unpack();
+        virtual u32 conn();
         virtual ~IPacket() = default;
 };
 

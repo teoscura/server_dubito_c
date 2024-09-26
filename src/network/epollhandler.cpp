@@ -60,3 +60,8 @@ u32 EpollHandler::wait(epoll_event *pevents, u32 maxevents, u32 timeout)
     }
     return nevents;
 }
+
+EpollHandler::~EpollHandler()
+{
+    close(mepollfd);
+}
