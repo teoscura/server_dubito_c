@@ -1,4 +1,5 @@
-Create packet structure and interfaces
+TODO: Rework packets so that they use smart pointers.
+
 define protocol
 establish matchmaking
 custom games system
