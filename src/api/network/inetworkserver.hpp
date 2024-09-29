@@ -2,7 +2,7 @@
 #define I_NETWORKSERVER_H
 
 #include "../../defines/dint.hpp"
-#include "ipacket.hpp"
+#include "../packets/ipacket.hpp"
 #include <vector>
 
 using namespace dint;
@@ -10,7 +10,7 @@ using namespace dint;
 class INetworkServer
 {
     public:
-        virtual std::vector<IPacket*> incoming_packets() = 0;
+        virtual std::vector<IPacket*> p_incoming_packets() = 0;
         virtual void send(std::vector<u8> data, u32 recipient) = 0;
         virtual ~INetworkServer() = 0;   
 };

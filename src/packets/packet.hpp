@@ -1,7 +1,7 @@
 #ifndef PACKET_H 
 #define PACKET_H
 
-#include "../api/network/ipacket.hpp"
+#include "../api/packets/ipacket.hpp"
 #include "../api/network/itcpsocket.hpp"
 
 class Packet : public IPacket 

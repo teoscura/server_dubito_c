@@ -9,11 +9,11 @@ class NetworkServer : public INetworkServer, public TCPSocket, public EpollHandl
 {
     private:
         std::vector<Connection> mconnusers;
-        bool connected(Connection conn);
-        void newconn(epoll_event ev);
+        bool mconnected(Connection conn);
+        void mnewconn(epoll_event ev);
     public:
         NetworkServer(u32 port);
-        std::vector<IPacket*> incoming_packets() override; 
+        std::vector<IPacket*> p_incoming_packets() override; 
         void send(std::vector<u8> data, u32 recipient) override;
         ~NetworkServer();
 };

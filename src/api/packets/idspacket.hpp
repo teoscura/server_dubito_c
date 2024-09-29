@@ -10,7 +10,7 @@ using namespace dint;
 class IDsPacket
 {
     public:
-        virtual IPacket serialize() = 0;
+        virtual IPacket const serialize() = 0;
         virtual ~IDsPacket() = 0;
 };
 
