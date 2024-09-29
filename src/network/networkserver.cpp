@@ -50,7 +50,6 @@ std::vector<IPacket*> NetworkServer::p_incoming_packets()
         }
         if(t.events & EPOLLIN)
         {
-            
             Packet *p = new Packet(t.data.fd, TCPSocket::read(t.data.fd));
             if(p->unpack().size()==0)
             {

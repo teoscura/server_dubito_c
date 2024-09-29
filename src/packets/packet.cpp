@@ -1,8 +1,8 @@
 #include "packet.hpp"
 
 Packet::Packet(u32 conn, std::vector<u8> data) : 
-mdata(data),
-mconn(conn)
+mconn(conn),
+mdata(data)
 {
 }
 

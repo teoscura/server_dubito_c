@@ -1,6 +1,6 @@
 # Source directories separated by space
 # Example ./ src1/ src2/
-SRCDIR   =  src/ src/network/ src/packet/ src/api/network/
+SRCDIR   =  src/ src/network/ src/packets/ src/api/network/ src/api/packets/
 OBJDIR   = target/objects/
 # Include directories separated by space
 INCDIR   = 
