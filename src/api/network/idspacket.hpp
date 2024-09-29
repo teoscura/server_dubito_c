@@ -10,8 +10,8 @@ using namespace dint;
 class IDsPacket
 {
     public:
-        virtual IPacket serialize();
-        virtual ~IDsPacket() = default;
+        virtual IPacket serialize() = 0;
+        virtual ~IDsPacket() = 0;
 };
 
 #endif

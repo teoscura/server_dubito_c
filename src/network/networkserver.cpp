@@ -1,4 +1,4 @@
-#include "../../defines/params.hpp"
+#include "../defines/params.hpp"
 #include "networkserver.hpp"
 #include "epollhandler.hpp"
 #include "tcpsocket.hpp"
@@ -26,11 +26,13 @@ void NetworkServer::newconn(epoll_event ev)
     mconnusers.push_back(newconn);
 }
 
-std::vector<IPacket> NetworkServer::incoming_packets()
+
+//TODO rewrite this using uniqueptrs.
+std::vector<IPacket*> NetworkServer::incoming_packets()
 {
     epoll_event pevents[MAXCONNS];
-    std::vector<IPacket> res;
-    wait(pevents, MAXCONNS, ETIMEOUT);
+    std::vector<IPacket*> res;
+    EpollHandler::wait(pevents, MAXCONNS, ETIMEOUT);
     for(epoll_event t : pevents)
     {
         if(t.data.fd == TCPSocket::connection().sockfd)
@@ -49,10 +51,10 @@ std::vector<IPacket> NetworkServer::incoming_packets()
         if(t.events & EPOLLIN)
         {
             
-            Packet p = Packet(t.data.fd, TCPSocket::read(t.data.fd));
-            if(p.unpack().size()==0)
+            Packet *p = new Packet(t.data.fd, TCPSocket::read(t.data.fd));
+            if(p->unpack().size()==0)
             {
-                EpollHandler::eventop(p.conn(), EPOLL_CTL_DEL, EPOLLIN);
+                EpollHandler::eventop(p->conn(), EPOLL_CTL_DEL, EPOLLIN);
                 continue;
             }
             res.push_back(p);

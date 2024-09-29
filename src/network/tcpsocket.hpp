@@ -1,7 +1,7 @@
 #ifndef SOCKET_H
 #define SOCKET_H
 
-#include "../../api/network/itcpsocket.hpp"
+#include "../api/network/itcpsocket.hpp"
 
 class TCPSocket : public ITCPSocket 
 {

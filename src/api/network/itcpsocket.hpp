@@ -18,10 +18,10 @@ struct Connection
 class ITCPSocket
 {
     public:
-        virtual void write(const Connection reciever, const std::vector<u8>& data) const;
-        virtual std::vector<u8> read(const u32 network_fd);
-        virtual void close();
-        virtual ~ITCPSocket() = default;
+        virtual void write(const Connection reciever, const std::vector<u8>& data) const = 0;
+        virtual std::vector<u8> read(const u32 network_fd) = 0;
+        virtual void close() = 0;
+        virtual ~ITCPSocket() = 0;
 };
 
 #endif

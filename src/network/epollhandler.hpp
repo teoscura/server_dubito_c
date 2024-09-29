@@ -1,7 +1,7 @@
 #ifndef EPOLLHANDLER_H
 #define EPOLLHANDLER_H
 
-#include "../../api/network/iepollhandler.hpp"
+#include "../api/network/iepollhandler.hpp"
 
 class EpollHandler : public IEpollHandler
 {
