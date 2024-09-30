@@ -1,4 +1,4 @@
-TODO: Rework packets so that they use smart pointers.
+TODO: Crash in costruzione server, fixare.
 
 define protocol
 establish matchmaking

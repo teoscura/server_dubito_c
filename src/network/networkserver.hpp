@@ -4,6 +4,7 @@
 #include "../api/network/inetworkserver.hpp"
 #include "epollhandler.hpp"
 #include "tcpsocket.hpp"
+#include <memory>
 
 class NetworkServer : public INetworkServer, public TCPSocket, public EpollHandler
 {
@@ -13,7 +14,7 @@ class NetworkServer : public INetworkServer, public TCPSocket, public EpollHandl
         void mnewconn(epoll_event ev);
     public:
         NetworkServer(u32 port);
-        std::vector<IPacket*> p_incoming_packets() override; 
+        std::vector<std::shared_ptr<IPacket>> p_incoming_packets() override; 
         void send(std::vector<u8> data, u32 recipient) override;
         ~NetworkServer();
 };

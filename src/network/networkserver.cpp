@@ -28,10 +28,10 @@ void NetworkServer::mnewconn(epoll_event ev)
     mconnusers.push_back(newconn);
 }
 
-std::vector<IPacket*> NetworkServer::p_incoming_packets()
+std::vector<std::shared_ptr<IPacket>> NetworkServer::p_incoming_packets()
 {
     epoll_event pevents[MAXCONNS];
-    std::vector<IPacket*> pres;
+    std::vector<std::shared_ptr<IPacket>> pres;
     EpollHandler::wait(pevents, MAXCONNS, ETIMEOUT);
     for(epoll_event t : pevents)
     {
@@ -50,13 +50,14 @@ std::vector<IPacket*> NetworkServer::p_incoming_packets()
         }
         if(t.events & EPOLLIN)
         {
-            Packet *p = new Packet(t.data.fd, TCPSocket::read(t.data.fd));
-            if(p->unpack().size()==0)
+            auto p = Packet(t.data.fd, TCPSocket::read(t.data.fd));
+            if(p.unpack().size()==0)
             {
-                EpollHandler::eventop(p->conn(), EPOLL_CTL_DEL, EPOLLIN);
+                EpollHandler::eventop(p.conn(), EPOLL_CTL_DEL, EPOLLIN);
                 continue;
             }
-            pres.push_back(p);
+            auto s = std::make_shared<Packet>(p);
+            pres.push_back(s);
             continue;
         }
         else{

@@ -4,6 +4,7 @@
 #include "../api/packets/idspacket.hpp"
 
 #include "../api/network/itcpsocket.hpp"
+#include <memory>
 
 class DsPacket : public IDsPacket
 {
@@ -11,7 +12,7 @@ class DsPacket : public IDsPacket
         Connection mrecipient;
         DsPacket(Connection recipient);
     public:
-        virtual IPacket const serialize() override = 0;
+        virtual std::shared_ptr<IPacket> const serialize() override = 0;
         virtual ~DsPacket() override = 0;
 };
 

@@ -16,7 +16,7 @@ class PConnectToRoom : public DsPacket
     public:
         PConnectToRoom(Connection recipient, std::string reason);
         std::string& gusername() { return mplayername; }; 
-        IPacket const serialize() override;
+        std::shared_ptr<IPacket> const serialize() override;
         ~PConnectToRoom() override = default;
 };
 
@@ -31,7 +31,7 @@ class PAccept : public DsPacket
         u8 mkey;
     public:
         PAccept(Connection recipient, u8 pid, u8 key);
-        IPacket const serialize() override;
+        std::shared_ptr<IPacket> const serialize() override;
         ~PAccept() override = default;
 };
 
@@ -46,7 +46,7 @@ class PRoomPing : public DsPacket
     public:
         PRoomPing(Connection recipient, u32 tick);
         u32 const gtick() {return mtick;};
-        IPacket const serialize() override;
+        std::shared_ptr<IPacket> const serialize() override;
         ~PRoomPing() override = default;
 };
 
@@ -65,7 +65,7 @@ class PReadyCheck : public DsPacket
         u8 const gpid() { return mpid; };
         u8 const gkey() { return mkey; };
         bool const gready() { return mready; };
-        IPacket const serialize() override;
+        std::shared_ptr<IPacket> const serialize() override;
         ~PReadyCheck() override = default;
 };
 
@@ -79,11 +79,11 @@ class PCountdownStart : public DsPacket
         u8 mseconds;
     public:
         PCountdownStart(Connection recipient, u8 seconds);
-        IPacket const serialize() override;
+        std::shared_ptr<IPacket> const serialize() override;
         ~PCountdownStart() override = default;
 };
 
-/* - Game Start - 0x08  - - - - - - 
+/* - Game Start - 0x06  - - - - - - 
     ONLY!
     s->c: sent to start the game, array of:
     Number of Players in a short,
@@ -94,10 +94,11 @@ class PGameStart : public DsPacket
 {
     private:
         std::vector<u8> mdata;
+        u8 mpid;
     public:
-        PGameStart(Connection recipient, std::vector<u8> data);
+        PGameStart(Connection recipient, std::vector<u8> data, u8 pid);
         std::vector<u8>& gdata() { return mdata; };
-        IPacket const serialize() override;
+        std::shared_ptr<IPacket> const serialize() override;
         ~PGameStart() override = default;
 };
 
