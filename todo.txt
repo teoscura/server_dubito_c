@@ -1,4 +1,7 @@
 TODO: Crash in costruzione server, fixare.
+TODO: Usare bitstream in serializzazione pacchetti pregame
+TODO: scrivere logger/
+
 
 define protocol
 establish matchmaking
